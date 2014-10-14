@@ -9,5 +9,7 @@
     <Root level="error">
       <AppenderRef ref="Console"/>
     </Root>
+    <logger name="com.acme.flight.analysis" level="INFO" />
+    <!-- <logger name="org.csveed.bean" level="INFO" /> -->
   </Loggers>
 </Configuration>
