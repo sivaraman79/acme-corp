@@ -1,0 +1,51 @@
+
+The purpose of this assignment is for us to get a better idea of how you think,
+organize code, and tackle the problems at hand. This challenge should not take
+you longer than 8 hours. Let us know if you have anyt questions.
+
+--------------------------------------------------------------------------------
+
+Attached is a csv file: flights.csv, which contains 3 months of data related to
+airline performance from 2001.
+
+Sample data
+--------------------------------------------------------------------------------
+date,    delay, distance, origin, destination
+01010001,   14,      405, MCI,    MDW
+01010530,  -11,      370, LAX,    PHX
+
+Columns......:
+--------------------------------------------------------------------------------
+Date.........: date without year, only month, day, hour & minute are specified.
+Delay........: Delay in minutes than scheduled time, negative delay means flight
+               arrived earlier than scheduled time
+Distance.....: Distance in miles
+Origin.......: Flight origin airport
+Destination..: Flight destination airport
+
+Your job is to write code that will load in flights.csv and analyze the data
+against the rules listed below. Your code should output the results into three files
+
+1. best_performance.csv will contain a list of best performing flight records
+   according to rules below.
+
+   Best Perforamnce Rules:
+   * The flight must have reached before scheduled time
+   * It must have reached before scheduled time at least 2 times
+   * The flight distance must be more than 400 miles
+
+2. other_flights.csv will contain a list of all other flights
+
+3. daily_best_flights.csv will contain the single best flight of the day,
+   where delay is be minimum, distance is maximum and flight is in morning hours
+
+--------------------------------------------------------------------------------
+
+Your code should be modular and reusable. Assume this is the first pass at a tool
+to build on and maintain.
+
+--------------------------------------------------------------------------------
+
+Bonus points:
+* Add an option to output json instead of csv
+* Write unit tests
