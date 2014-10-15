@@ -10,15 +10,16 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-import com.acme.flight.analysis.model.ArrivalInfo;
+import com.acme.flight.analysis.model.Arrival;
 
 public class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
 
-	private final DateTimeFormatter dtf = DateTimeFormat.forPattern(ArrivalInfo.INPUT_DATE_FORMAT);
+  private final DateTimeFormatter dtf = DateTimeFormat.forPattern(Arrival.INPUT_DATE_FORMAT);
 
-	@Override
-	public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator, SerializerProvider provider) throws IOException, JsonProcessingException {
-		jsonGenerator.writeNumber(dtf.print(localDateTime));
-	}
+  @Override
+  public void serialize(LocalDateTime localDateTime, JsonGenerator jsonGenerator,
+      SerializerProvider provider) throws IOException, JsonProcessingException {
+    jsonGenerator.writeNumber(dtf.print(localDateTime));
+  }
 
 }
