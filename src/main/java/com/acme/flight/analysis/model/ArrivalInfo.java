@@ -2,10 +2,9 @@ package com.acme.flight.analysis.model;
 
 import java.io.Serializable;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
-import org.codehaus.jackson.annotate.JsonValue;
+import org.codehaus.jackson.map.annotate.JsonSerialize;
 import org.csveed.annotations.CsvCell;
 import org.csveed.annotations.CsvConverter;
 import org.csveed.annotations.CsvFile;
@@ -14,7 +13,8 @@ import org.csveed.bean.ColumnNameMapper;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
-import com.acme.flight.analysis.custom.converter.CsvDateConverter;
+import com.acme.flight.analysis.util.transformer.CsvDateConverter;
+import com.acme.flight.analysis.util.transformer.LocalDateTimeSerializer;
 
 /**
  * Represents a single instance of flight arrival
@@ -23,8 +23,6 @@ import com.acme.flight.analysis.custom.converter.CsvDateConverter;
  *
  */
 @CsvFile(mappingStrategy = ColumnNameMapper.class, separator = ',')
-//@JsonSerialize(using = ArrivalInfoSerializer.class)
-@JsonAutoDetect
 public class ArrivalInfo implements Serializable {
 
 	private static final long serialVersionUID = -9188218907330342463L;
@@ -49,7 +47,6 @@ public class ArrivalInfo implements Serializable {
 	private int distanceInMiles;
 	private int delay;
 
-	@JsonValue
 	@JsonProperty("distance")
 	public int getDistanceInMiles() {
 		return distanceInMiles;
@@ -59,7 +56,6 @@ public class ArrivalInfo implements Serializable {
 		this.distanceInMiles = distanceInMiles;
 	}
 
-	@JsonValue
 	@JsonProperty("origin")
 	public String getOriginCode() {
 		return originCode;
@@ -69,7 +65,6 @@ public class ArrivalInfo implements Serializable {
 		this.originCode = originCode;
 	}
 
-	@JsonValue
 	@JsonProperty("destination")
 	public String getDestinationCode() {
 		return destinationCode;
@@ -78,19 +73,17 @@ public class ArrivalInfo implements Serializable {
 	public void setDestinationCode(String destinationCode) {
 		this.destinationCode = destinationCode;
 	}
-	
-	@JsonValue
+
 	@JsonProperty("date")
+	@JsonSerialize(using=LocalDateTimeSerializer.class)
 	public LocalDateTime getDateTime() {
 		return dateTime;
 	}
 
-	@JsonValue
 	public int getDelay() {
 		return delay;
 	}
 
-	@JsonValue
 	public void setDelay(int delay) {
 		this.delay = delay;
 	}
@@ -116,37 +109,37 @@ public class ArrivalInfo implements Serializable {
 	public void setDateTime(LocalDateTime dateTime) {
 		this.dateTime = dateTime;
 	}
-	
+
 	// Utility methods
 
 	public boolean arrivedBeforeSchedule() {
 		return (delay < 0);
 	}
-	
+
 	public boolean delayLessThan(ArrivalInfo arrivalInfo) {
 		return (delay < arrivalInfo.delay);
 	}
-	
+
 	public boolean delaySameAs(ArrivalInfo arrivalInfo) {
 		return (delay == arrivalInfo.delay);
 	}
-	
+
 	public boolean coversMoreDistanceThan(ArrivalInfo arrivalInfo) {
 		return (distanceInMiles < arrivalInfo.distanceInMiles);
 	}
-	
+
 	public boolean coversDistaceOfAtleast(ArrivalInfo arrivalInfo) {
 		return (distanceInMiles >= arrivalInfo.distanceInMiles);
 	}
-	
+
 	public boolean coversSameDistaceAs(ArrivalInfo arrivalInfo) {
 		return (distanceInMiles == arrivalInfo.distanceInMiles);
 	}
-	
+
 	public boolean arrivedDuringnMorningHours() {
 		return dateTime.toLocalTime().isBefore(new LocalTime(12, 00));
 	}
-	
+
 	@Override
 	public String toString() {
 		return "ArrivalInfo [arrivalId=" + arrivalId + ", dateTime=" + dateTime + ", flight=" + flight + ", delay=" + delay + "]";

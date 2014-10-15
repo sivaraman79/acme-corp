@@ -16,18 +16,19 @@ import com.google.common.collect.ListMultimap;
 public class BestPerformanceArrivalInfoHandler implements ArrivalInfoHandler {
 
 	private static final Logger LOGGER = LogManager.getLogger();
-	
+
 	private static final int MIN_NUMBER_OF_ARRIVALS = 2;
 	private static final int MIN_JOURNEY_DISTANCE_IN_MILES = 400;
 
-	private Writer writer;
-	
+	private Writer bestPerformingArrivalInfoWriter;
+	private Writer otherArrivalInfoWriter;
+
 	private ListMultimap<Flight, ArrivalInfo> flightToArrivalInfo = ArrayListMultimap.create();
-	// TODO Write this to output
 	private List<ArrivalInfo> ignoredArrivalInfos = new ArrayList<>();
-	
-	public BestPerformanceArrivalInfoHandler(Writer writer) {
-		this.writer = writer;
+
+	public BestPerformanceArrivalInfoHandler(Writer bestPerformingArrivalInfoWriter, Writer otherArrivalInfoWriter) {
+		this.bestPerformingArrivalInfoWriter = bestPerformingArrivalInfoWriter;
+		this.otherArrivalInfoWriter = otherArrivalInfoWriter;
 	}
 
 	@Override
@@ -41,8 +42,8 @@ public class BestPerformanceArrivalInfoHandler implements ArrivalInfoHandler {
 
 	@Override
 	public void postProcess() throws IOException {
-		LOGGER.info("Post processing started for BestPerformanceArrivalInfoHandler");
-		
+		LOGGER.info("Post processing started for BestPerformanceArrivalInfoHandler..");
+
 		for (Flight flight : flightToArrivalInfo.keySet()) {
 			List<ArrivalInfo> arrivalInfos = flightToArrivalInfo.get(flight);
 			if(arrivalInfos.size() < MIN_NUMBER_OF_ARRIVALS) {
@@ -50,18 +51,26 @@ public class BestPerformanceArrivalInfoHandler implements ArrivalInfoHandler {
 				ignoredArrivalInfos.addAll(removedArrivalInfos);
 			}
 		}
-		
+
+		LOGGER.info("Saving best performing flight arrival info..");
 		for (Flight flight : flightToArrivalInfo.keySet()) {
 			List<ArrivalInfo> arrivalInfos = flightToArrivalInfo.get(flight);
 			for (ArrivalInfo arrivalInfo : arrivalInfos) {
-				writer.write(arrivalInfo);
+				bestPerformingArrivalInfoWriter.write(arrivalInfo);
 			}
 		}
-		try {
-			writer.close();
-		} catch (IOException e) {
-			LOGGER.error("Issue while closing the writer.");
-			throw e;
+		bestPerformingArrivalInfoWriter.close();
+
+		LOGGER.info("Best performing flight arrival info save complete.");
+
+		LOGGER.info("Saving sub-optimal flight arrival info ...");
+		for (ArrivalInfo ignoredArrivalInfo : ignoredArrivalInfos) {
+			otherArrivalInfoWriter.write(ignoredArrivalInfo);
 		}
+
+		otherArrivalInfoWriter.close();
+		LOGGER.info("Sub-optimal arrival info save complete.");
+
+		LOGGER.info("Post processing complete for BestPerformanceArrivalInfoHandler");
 	}
 }
