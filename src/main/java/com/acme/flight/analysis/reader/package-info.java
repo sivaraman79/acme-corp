@@ -4,4 +4,4 @@
  * @author Ashok.Koyi
  *
  */
-package com.acme.flight.analysis.input.reader;
+package com.acme.flight.analysis.reader;

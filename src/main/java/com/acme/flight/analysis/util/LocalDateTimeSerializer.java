@@ -1,4 +1,4 @@
-package com.acme.flight.analysis.util.transformer;
+package com.acme.flight.analysis.util;
 
 import java.io.IOException;
 

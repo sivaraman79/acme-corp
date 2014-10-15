@@ -1,4 +1,4 @@
-package com.acme.flight.analysis.input.reader;
+package com.acme.flight.analysis.reader;
 
 import java.io.BufferedReader;
 import java.io.File;

@@ -1,4 +1,4 @@
-package com.acme.flight.analysis.selection.strategy;
+package com.acme.flight.analysis.handler;
 
 import java.io.IOException;
 

@@ -7,12 +7,12 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.acme.flight.analysis.input.reader.CsvReader;
-import com.acme.flight.analysis.input.reader.Reader;
+import com.acme.flight.analysis.handler.ArrivalInfoHandler;
+import com.acme.flight.analysis.handler.BestPerformanceArrivalInfoHandler;
+import com.acme.flight.analysis.handler.DailyBestFlightArrivalInfoHandler;
 import com.acme.flight.analysis.model.ArrivalInfo;
-import com.acme.flight.analysis.selection.strategy.ArrivalInfoHandler;
-import com.acme.flight.analysis.selection.strategy.BestPerformanceArrivalInfoHandler;
-import com.acme.flight.analysis.selection.strategy.DailyBestFlightArrivalInfoHandler;
+import com.acme.flight.analysis.reader.CsvReader;
+import com.acme.flight.analysis.reader.Reader;
 import com.acme.flight.analysis.writer.CsvWriter;
 import com.acme.flight.analysis.writer.JsonWriter;
 

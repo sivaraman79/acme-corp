@@ -13,8 +13,8 @@ import org.csveed.bean.ColumnNameMapper;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
-import com.acme.flight.analysis.util.transformer.CsvDateConverter;
-import com.acme.flight.analysis.util.transformer.LocalDateTimeSerializer;
+import com.acme.flight.analysis.util.CsvDateConverter;
+import com.acme.flight.analysis.util.LocalDateTimeSerializer;
 
 /**
  * Represents a single instance of flight arrival

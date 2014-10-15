@@ -1,9 +1,8 @@
 ## TODO
-- Write unit & functional tests to verify the overall intent
-- Write Javadocs
-- Better naming strategy
-- Split the arrival info selector from the processor
-- Let a container handle the best flight info & its complementary
+- Unit & functional tests to verify the overall intent
+- Javadocs
+- Better naming strategy, both for packages & classes
+- Separate selection strategy & data processor
 
 ## Completed
 - Best performing flight arrivals
