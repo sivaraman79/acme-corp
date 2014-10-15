@@ -11,6 +11,7 @@ import org.csveed.bean.ColumnNameMapper;
 
 import com.acme.flight.analysis.model.ArrivalInfo;
 
+// TODO Need to take care of order in which the columns are written. This will not matter if we use column name mapper while reading
 public class CsvWriter implements Writer {
 
 	private CsvClient<ArrivalInfo> csvWriter;
@@ -23,7 +24,7 @@ public class CsvWriter implements Writer {
 	}
 
 	@Override
-	public void write(ArrivalInfo arrivalInfo) {
+	public void write(ArrivalInfo arrivalInfo) throws IOException {
 		if(isClosed) {
 			throw new IllegalStateException("Cannot write to an already closed stream");
 		}

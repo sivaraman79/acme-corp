@@ -34,8 +34,6 @@ public class CsvReader implements Reader {
 			// This condition guards against that issue
 			if(arrivalInfo != null) {
 				arrivalInfo.setArrivalId(csvClient.getCurrentLine());
-				// TODO : Temp hack for now till I identify a better mechanism to use csveed library to be able to read properties into associations
-				arrivalInfo.initFlight();
 				return arrivalInfo;
 			}
 		}

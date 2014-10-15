@@ -5,19 +5,19 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
-public class CustomDateConverter extends AbstractConverter<LocalDateTime> {
+import com.acme.flight.analysis.model.ArrivalInfo;
 
-	private static final String INPUT_DATE_FORMAT = "MMddmmss";
-	private static final int ARIIVAL_YEAR = 2001;
-	private final DateTimeFormatter dtf = DateTimeFormat.forPattern(INPUT_DATE_FORMAT);
+public class CsvDateConverter extends AbstractConverter<LocalDateTime> {
 
-	public CustomDateConverter() {
+	private final DateTimeFormatter dtf = DateTimeFormat.forPattern(ArrivalInfo.INPUT_DATE_FORMAT);
+
+	public CsvDateConverter() {
 		super(LocalDateTime.class);
 	}
 	
 	@Override
 	public LocalDateTime fromString(String input) throws Exception {
-		return dtf.parseLocalDateTime(input).withYear(ARIIVAL_YEAR);
+		return dtf.parseLocalDateTime(input).withYear(ArrivalInfo.ARIIVAL_YEAR);
 	}
 
 	@Override

@@ -26,12 +26,27 @@ public class DailyBestFlightArrivalInfoHandler implements ArrivalInfoHandler {
 	@Override
 	public void handle(ArrivalInfo arrival) {
 		LOGGER.debug("Handling arrival info : {}", arrival);
+		if(!arrival.arrivedDuringnMorningHours()) {
+			return;
+		}
 		List<ArrivalInfo> existingArrivals = dateToArrivalInfo.get(arrival.getDateTime().toLocalDate());
 		// If element is already present, verify whether the new arrival is better than existing list
 		if(existingArrivals.size() != 0) {
 			ArrivalInfo firstArrivalInfo = existingArrivals.get(0);
-			if(arrival.getDelay() < firstArrivalInfo.getDelay()) {
-				dateToArrivalInfo.removeAll(arrival.getDateTime());
+			// If the delay is less than the existing entries by covering atleast the same distance, replace the existing set with this one
+			if(arrival.delayLessThan(firstArrivalInfo)) {
+				if(arrival.coversDistaceOfAtleast(firstArrivalInfo)) {
+					dateToArrivalInfo.removeAll(arrival.getDateTime());
+					dateToArrivalInfo.put(arrival.getDateTime().toLocalDate(), arrival);
+				}
+			} else if (arrival.delaySameAs(firstArrivalInfo)) {
+				// If the delay is same as the existing entry & covers more distance than the existing entry, replace the existing set with this one
+				if(arrival.coversMoreDistanceThan(firstArrivalInfo)) {
+					dateToArrivalInfo.removeAll(arrival.getDateTime());
+					dateToArrivalInfo.put(arrival.getDateTime().toLocalDate(), arrival);
+				}
+			} else if(arrival.delaySameAs(firstArrivalInfo) && arrival.coversSameDistaceAs(firstArrivalInfo)) {
+				dateToArrivalInfo.put(arrival.getDateTime().toLocalDate(), arrival);
 			}
 		} else {
 			dateToArrivalInfo.put(arrival.getDateTime().toLocalDate(), arrival);
@@ -48,12 +63,7 @@ public class DailyBestFlightArrivalInfoHandler implements ArrivalInfoHandler {
 				writer.write(arrivalInfo);
 			}
 		}
-		try {
-			writer.close();
-		} catch (IOException e) {
-			LOGGER.error("Issue while closing the writer.");
-			throw e;
-		}
+		writer.close();
 		LOGGER.info("Written daily best flight arrival info to the output");
 	}
 

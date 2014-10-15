@@ -63,4 +63,12 @@ public class Flight {
 	public boolean isJourneyInMilesGreaterThan(int miles) {
 		return (distanceInMiles > miles);
 	}
+	
+//	public static Flight getFlight(String originCode, String destinationCode, int distanceInMiles) {
+//		Flight newFlight = new Flight(originCode, destinationCode, distanceInMiles);
+//		if(!cachedFlights.contains(newFlight)) {
+//			cachedFlights.add(newFlight);
+//		}
+//		return cachedFlights.get(newFlight);
+//	}
 }

@@ -14,6 +14,7 @@ import com.acme.flight.analysis.selection.strategy.ArrivalInfoHandler;
 import com.acme.flight.analysis.selection.strategy.BestPerformanceArrivalInfoHandler;
 import com.acme.flight.analysis.selection.strategy.DailyBestFlightArrivalInfoHandler;
 import com.acme.flight.analysis.writer.CsvWriter;
+import com.acme.flight.analysis.writer.JsonWriter;
 
 public class Play {
 	
@@ -45,7 +46,8 @@ public class Play {
 	private void buildHandlers() throws IOException {
 		LOGGER.debug("Building handlers..");
 		handlers = new ArrayList<>();
-		handlers.add(new BestPerformanceArrivalInfoHandler(new CsvWriter("bin/best_performance.csv")));
+//		handlers.add(new BestPerformanceArrivalInfoHandler(new CsvWriter("bin/best_performance.csv")));
+		handlers.add(new BestPerformanceArrivalInfoHandler(new JsonWriter("bin/best_performance.json")));
 		handlers.add(new DailyBestFlightArrivalInfoHandler(new CsvWriter("bin/daily_best_flights.csv")));
 		LOGGER.debug("Added best performance & daily best flight arrival info handlers..");
 	}

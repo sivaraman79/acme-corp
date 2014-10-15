@@ -32,7 +32,7 @@ public class BestPerformanceArrivalInfoHandler implements ArrivalInfoHandler {
 
 	@Override
 	public void handle(ArrivalInfo arrival) {
-		if (arrival.isBeforeSchedule() && arrival.getFlight().isJourneyInMilesGreaterThan(MIN_JOURNEY_DISTANCE_IN_MILES)) {
+		if (arrival.arrivedBeforeSchedule() && arrival.getFlight().isJourneyInMilesGreaterThan(MIN_JOURNEY_DISTANCE_IN_MILES)) {
 			flightToArrivalInfo.put(arrival.getFlight(), arrival);
 		} else {
 			ignoredArrivalInfos.add(arrival);

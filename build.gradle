@@ -1,6 +1,9 @@
 apply plugin:'java'
 apply plugin:'eclipse'
 
+sourceCompatibility = 1.6
+version = 0.1.0
+
 repositories {
 	jcenter()
 }
@@ -8,6 +11,10 @@ repositories {
 dependencies {
 	// For CSV I/O
 	compile 'org.csveed:csveed:0.4.0'
+	
+	// For Writing JSON
+	compile 'org.codehaus.jackson:jackson-core-asl:1.9.13'
+	compile 'org.codehaus.jackson:jackson-mapper-asl:1.9.13'
 
 	// For date manipulations
 	compile 'joda-time:joda-time:2.5'
