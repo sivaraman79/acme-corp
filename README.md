@@ -5,5 +5,6 @@
 - Let a container handle the best flight info & its complementary
 
 # Instructions on how to build
-- Run `gradlew.bat eclipse` from command prompt and import the project into eclipse
+- Run `gradlew.bat eclipse` from command prompt and import the project into eclipse [for Windows]
+- Run `./gradlew eclipse` from shell rompt and import the project into eclipse [for Unix flavors]
 - Execute the main program from the class Play
