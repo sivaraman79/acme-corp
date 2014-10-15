@@ -1,14 +1,17 @@
 ## TODO
 - Unit & functional tests to verify the overall intent
 - Javadocs
-- Better naming strategy, both for packages & classes
-- Separate selection strategy & data processor
+- Fixing the issue with Best daily flight arrival filter
 
 ## Completed
 - Best performing flight arrivals
 - Sub-Optimal flight arrivals
 - Best daily flight arrivals
-- Support for both JSON & CSV writers. Support for future writer is already inplace
+- Support for both JSON & CSV writers. Flexibility to add new writers is inplace
+15 Oct 2014
+- Redesigned the API
+- Newer & better abstractions & naming strategies
+- Split data filter from data handler
 
 ## Instructions on how to build
 - Run `gradlew.bat eclipse` from command prompt and import the project into eclipse [for Windows]
