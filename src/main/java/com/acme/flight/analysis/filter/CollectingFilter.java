@@ -11,12 +11,22 @@ import java.util.Collection;
  * 
  * @author thekalinga
  *
- * @param <T> item type to filter
+ * @param <T> Input type to be filtered
  */
 public interface CollectingFilter<T> extends Filter<T> {
+  /**
+   * Gives an opportunity to proces the collected entries till the end. Call this method at the end
+   * of input stream
+   */
   void processCollectedEntries();
 
+  /**
+   * @return collection of matched entries
+   */
   Collection<T> matchedEntries();
 
+  /**
+   * @return collection of unmatched entries
+   */
   Collection<T> unmatchedEntries();
 }

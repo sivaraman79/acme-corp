@@ -13,6 +13,18 @@ import com.acme.flight.analysis.model.Arrival;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
+/**
+ * Will return single best arrival on each day based on the following rules
+ * 
+ * <ul>
+ * <li>Delay is be minimum</li>
+ * <li>Distance is maximum</li>
+ * <li>Flight is in morning hours</li>
+ * </ul>
+ * 
+ * @author thekalinga
+ *
+ */
 public class DailyBestArrivalsCollectingFilter implements CollectingFilter<Arrival> {
 
   private static final Logger LOGGER = LogManager.getLogger();

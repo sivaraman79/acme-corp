@@ -12,6 +12,18 @@ import com.acme.flight.analysis.model.Flight;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
+/**
+ * Filters the data based on the following rules
+ * 
+ * <ul>
+ * <li>The flight must have reached before scheduled time</li>
+ * <li>It must have reached before scheduled time at least 2 times</li>
+ * <li>The flight distance must be more than 400 miles</li>
+ * </ul>
+ * 
+ * @author thekalinga
+ *
+ */
 public class BestPerformingArrivalsCollectingFilter implements CollectingFilter<Arrival> {
 
   private static final Logger LOGGER = LogManager.getLogger();
@@ -31,7 +43,7 @@ public class BestPerformingArrivalsCollectingFilter implements CollectingFilter<
       unmatchedArrivals.add(arrival);
     }
   }
-  
+
   @Override
   public void processCollectedEntries() {
     LOGGER.info("Processing collected entries for BestPerformingArrivalsCollectingFilter..");
@@ -55,7 +67,7 @@ public class BestPerformingArrivalsCollectingFilter implements CollectingFilter<
   public Collection<Arrival> unmatchedEntries() {
     return unmatchedArrivals;
   }
-  
+
   @Override
   public String toString() {
     return "{Best performing arrivals collecting filter}";
