@@ -1,4 +1,4 @@
-# Flight data analyzer [![Build Status](https://travis-ci.org/thekalinga/acme-corporation-flightdata.svg?branch=master)][1] [![Coverage Status](https://coveralls.io/repos/thekalinga/acme-corporation-flightdata/badge.png?branch=master)](https://coveralls.io/r/thekalinga/acme-corporation-flightdata?branch=master)
+# Flight data analyzer [![Build Status](https://travis-ci.org/thekalinga/acme-corporation-flightdata.svg?branch=master)](https://travis-ci.org/thekalinga/acme-corporation-flightdata) [![Coverage Status](https://coveralls.io/repos/thekalinga/acme-corporation-flightdata/badge.png?branch=master)](https://coveralls.io/r/thekalinga/acme-corporation-flightdata?branch=master)
 
 ## TODO
 - Unit & functional tests to verify the overall intent - In progress
@@ -18,6 +18,3 @@
 - Run `./gradlew eclipse` from shell rompt and import the project into eclipse [for Unix flavors]
 - Execute the main program from the class Launcher
 - The processed files will be generated at **bin/best_performance.json**, **bin/other_flights.csv** & **bin/daily_best_flights.csv**
-
-
-[1]: https://travis-ci.org/thekalinga/acme-corporation-flightdata
