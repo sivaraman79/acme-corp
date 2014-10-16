@@ -15,13 +15,13 @@ import com.google.common.collect.ListMultimap;
 
 /**
  * Will return single best arrival on each day based on the following rules
- * 
+ *
  * <ul>
  * <li>Delay is be minimum</li>
  * <li>Distance is maximum</li>
  * <li>Flight is in morning hours</li>
  * </ul>
- * 
+ *
  * @author thekalinga
  *
  */
@@ -30,7 +30,7 @@ public class DailyBestArrivalsCollectingFilter implements CollectingFilter<Arriv
   private static final Logger LOGGER = LogManager.getLogger();
 
   private static final List<Arrival> EMPTY_ARRIVAL_LIST = Collections
-      .unmodifiableList(new ArrayList<>());
+      .unmodifiableList(new ArrayList<Arrival>());
 
   private ListMultimap<LocalDate, Arrival> dateToArrival = ArrayListMultimap.create();
 
