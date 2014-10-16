@@ -1,5 +1,4 @@
-# Flight data analyzer [![Build Status](https://travis-ci.org/thekalinga/acme-corporation-flightdata.svg?branch=master)][1]
-[![Coverage Status](https://coveralls.io/repos/thekalinga/acme-corporation-flightdata/badge.png?branch=master)](https://coveralls.io/r/thekalinga/acme-corporation-flightdata?branch=master)
+# Flight data analyzer [![Build Status](https://travis-ci.org/thekalinga/acme-corporation-flightdata.svg?branch=master)][1] [![Coverage Status](https://coveralls.io/repos/thekalinga/acme-corporation-flightdata/badge.png?branch=master)](https://coveralls.io/r/thekalinga/acme-corporation-flightdata?branch=master)
 
 ## TODO
 - Unit & functional tests to verify the overall intent - In progress
