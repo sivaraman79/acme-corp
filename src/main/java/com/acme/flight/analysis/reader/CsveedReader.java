@@ -30,7 +30,7 @@ public class CsveedReader<T> implements Reader<T> {
 
   @Override
   public boolean hasMoreItems() {
-    return csvClient.isFinished();
+    return !csvClient.isFinished();
   }
 
 }

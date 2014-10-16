@@ -35,10 +35,9 @@ public class Launcher {
         new CsveedReader<>(Launcher.class.getClassLoader().getResourceAsStream("flights.csv"),
             Arrival.class);
 
-    Arrival arrivalInfo;
-    while ((arrivalInfo = reader.read()) != null) {
+    while (reader.hasMoreItems()) {
       for (DataHandler<Arrival> handler : launcher.getDataHandlers()) {
-        handler.handle(arrivalInfo);
+        handler.handle(reader.read());
       }
     }
 

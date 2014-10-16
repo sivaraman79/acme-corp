@@ -40,7 +40,7 @@ public class DailyBestArrivalsCollectingFilter implements CollectingFilter<Arriv
     if (!arrival.arrivedDuringnMorningHours()) {
       return;
     }
-    List<Arrival> existingArrivals = dateToArrival.get(arrival.getDateTime().toLocalDate());
+    List<Arrival> existingArrivals = dateToArrival.get(arrival.getArrivedAt().toLocalDate());
     // If element is already present, verify whether the new arrival is better than existing list
     if (existingArrivals.size() != 0) {
       Arrival firstArrivalInfo = existingArrivals.get(0);
@@ -48,22 +48,22 @@ public class DailyBestArrivalsCollectingFilter implements CollectingFilter<Arriv
       // replace the existing set with this one
       if (arrival.delayLessThan(firstArrivalInfo)) {
         if (arrival.coversDistaceOfAtleast(firstArrivalInfo)) {
-          dateToArrival.removeAll(arrival.getDateTime());
-          dateToArrival.put(arrival.getDateTime().toLocalDate(), arrival);
+          dateToArrival.removeAll(arrival.getArrivedAt().toLocalDate());
+          dateToArrival.put(arrival.getArrivedAt().toLocalDate(), arrival);
         }
       } else if (arrival.delaySameAs(firstArrivalInfo)) {
         // If the delay is same as the existing entry & covers more distance than the existing
         // entry, replace the existing set with this one
         if (arrival.coversMoreDistanceThan(firstArrivalInfo)) {
-          dateToArrival.removeAll(arrival.getDateTime());
-          dateToArrival.put(arrival.getDateTime().toLocalDate(), arrival);
+          dateToArrival.removeAll(arrival.getArrivedAt().toLocalDate());
+          dateToArrival.put(arrival.getArrivedAt().toLocalDate(), arrival);
         }
       } else if (arrival.delaySameAs(firstArrivalInfo)
           && arrival.coversSameDistaceAs(firstArrivalInfo)) {
-        dateToArrival.put(arrival.getDateTime().toLocalDate(), arrival);
+        dateToArrival.put(arrival.getArrivedAt().toLocalDate(), arrival);
       }
     } else {
-      dateToArrival.put(arrival.getDateTime().toLocalDate(), arrival);
+      dateToArrival.put(arrival.getArrivedAt().toLocalDate(), arrival);
     }
   }
 

@@ -60,22 +60,14 @@ public class Flight {
         .append(destinationCode, thatFlight.getDestinationCode()).isEquals();
   }
 
+  public boolean isJourneyInMilesGreaterThan(int miles) {
+    return (distanceInMiles > miles);
+  }
+
   @Override
   public String toString() {
     return "Flight [originCode=" + originCode + ", destinationCode=" + destinationCode
         + ", distanceInMiles=" + distanceInMiles + "]";
   }
 
-  public boolean isJourneyInMilesGreaterThan(int miles) {
-    return (distanceInMiles > miles);
-  }
-
-  // public static Flight getFlight(String originCode, String destinationCode, int distanceInMiles)
-  // {
-  // Flight newFlight = new Flight(originCode, destinationCode, distanceInMiles);
-  // if(!cachedFlights.contains(newFlight)) {
-  // cachedFlights.add(newFlight);
-  // }
-  // return cachedFlights.get(newFlight);
-  // }
 }

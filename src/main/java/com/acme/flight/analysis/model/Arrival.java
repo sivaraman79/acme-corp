@@ -2,6 +2,8 @@ package com.acme.flight.analysis.model;
 
 import java.io.Serializable;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.codehaus.jackson.map.annotate.JsonSerialize;
@@ -27,18 +29,15 @@ public class Arrival implements Serializable {
 
   private static final long serialVersionUID = -9188218907330342463L;
 
-  public static final String INPUT_DATE_FORMAT = "MMddmmss";
+  public static final String INPUT_DATE_FORMAT = "MMddHHmm";
   public static final int ARIIVAL_YEAR = 2001;
-
-  @CsvIgnore
-  private int arrivalId;
 
   @CsvIgnore
   private Flight flight;
 
   @CsvConverter(converter = CsvDateConverter.class)
   @CsvCell(columnName = "date")
-  private LocalDateTime dateTime;
+  private LocalDateTime arrivedAt;
   @CsvCell(columnName = "origin")
   private String originCode;
   @CsvCell(columnName = "destination")
@@ -76,8 +75,12 @@ public class Arrival implements Serializable {
 
   @JsonProperty("date")
   @JsonSerialize(using = LocalDateTimeSerializer.class)
-  public LocalDateTime getDateTime() {
-    return dateTime;
+  public LocalDateTime getArrivedAt() {
+    return arrivedAt;
+  }
+
+  public void setArrivedAt(LocalDateTime arrivedAt) {
+    this.arrivedAt = arrivedAt;
   }
 
   public int getDelay() {
@@ -98,19 +101,6 @@ public class Arrival implements Serializable {
     return flight;
   }
 
-  @JsonIgnore
-  public int getArrivalId() {
-    return arrivalId;
-  }
-
-  public void setArrivalId(int arrivalId) {
-    this.arrivalId = arrivalId;
-  }
-
-  public void setDateTime(LocalDateTime dateTime) {
-    this.dateTime = dateTime;
-  }
-
   // Utility methods
 
   public boolean arrivedBeforeSchedule() {
@@ -126,7 +116,7 @@ public class Arrival implements Serializable {
   }
 
   public boolean coversMoreDistanceThan(Arrival arrivalInfo) {
-    return (distanceInMiles < arrivalInfo.distanceInMiles);
+    return (distanceInMiles > arrivalInfo.distanceInMiles);
   }
 
   public boolean coversDistaceOfAtleast(Arrival arrivalInfo) {
@@ -138,13 +128,37 @@ public class Arrival implements Serializable {
   }
 
   public boolean arrivedDuringnMorningHours() {
-    return dateTime.toLocalTime().isBefore(new LocalTime(12, 00));
+    return arrivedAt.toLocalTime().isBefore(new LocalTime(12, 00));
   }
 
   @Override
   public String toString() {
-    return "ArrivalInfo [arrivalId=" + arrivalId + ", dateTime=" + dateTime + ", flight=" + flight
-        + ", delay=" + delay + "]";
+    return "ArrivalInfo [arrivedAt=" + arrivedAt + ", flight=" + getFlight() + ", delay=" + delay
+        + "]";
   }
+
+  @Override
+  public int hashCode() {
+    return new HashCodeBuilder().append(originCode).append(destinationCode).append(arrivedAt)
+        .hashCode();
+  }
+
+  @Override
+  public boolean equals(Object that) {
+    if (that == null) {
+      return false;
+    }
+    if (that == this) {
+      return true;
+    }
+    if (that.getClass() != getClass()) {
+      return false;
+    }
+    Arrival thatArrival = (Arrival) that;
+    return new EqualsBuilder().append(originCode, thatArrival.getOriginCode())
+        .append(destinationCode, thatArrival.getDestinationCode())
+        .append(arrivedAt, thatArrival.getArrivedAt()).isEquals();
+  }
+
 
 }
