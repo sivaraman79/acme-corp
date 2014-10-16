@@ -2,7 +2,9 @@ package com.acme.flight.analysis.filter;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +15,8 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
 /**
- * Filters the data based on the following rules
+ * Will compute a collection of both best performing & sub-optimal performing arrivals based on the
+ * following rules
  * 
  * <ul>
  * <li>The flight must have reached before scheduled time</li>
@@ -48,13 +51,22 @@ public class BestPerformingArrivalsCollectingFilter implements CollectingFilter<
   public void processCollectedEntries() {
     LOGGER.info("Processing collected entries for BestPerformingArrivalsCollectingFilter..");
 
-    for (Flight flight : flightToArrival.keySet()) {
-      List<Arrival> arrivalInfos = flightToArrival.get(flight);
+    for(Iterator<Entry<Flight, Arrival>> it = flightToArrival.entries().iterator(); it.hasNext(); ) {
+      Entry<Flight, Arrival> entry = it.next();
+      List<Arrival> arrivalInfos = flightToArrival.get(entry.getKey());
       if (arrivalInfos.size() < MIN_NUMBER_OF_ARRIVALS) {
-        List<Arrival> removedArrivalInfos = flightToArrival.removeAll(flight);
-        unmatchedArrivals.addAll(removedArrivalInfos);
+        it.remove();
+        unmatchedArrivals.addAll(arrivalInfos);
       }
     }
+    
+//    for (Flight flight : flightToArrival.keySet()) {
+//      List<Arrival> arrivalInfos = flightToArrival.get(flight);
+//      if (arrivalInfos.size() < MIN_NUMBER_OF_ARRIVALS) {
+//        List<Arrival> removedArrivalInfos = flightToArrival.removeAll(flight);
+//        unmatchedArrivals.addAll(removedArrivalInfos);
+//      }
+//    }
     LOGGER.info("Entry processing complete.");
   }
 

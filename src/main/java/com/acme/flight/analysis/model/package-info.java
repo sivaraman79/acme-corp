@@ -1,5 +1,5 @@
 /**
- * TODO: Complete documentation
+ * Contains the models of the analysis.
  *
  * @author Ashok.Koyi
  *

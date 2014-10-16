@@ -1,7 +1,6 @@
 /**
+ * Contains general utilities
  * 
- */
-/**
  * @author Ashok.Koyi
  *
  */

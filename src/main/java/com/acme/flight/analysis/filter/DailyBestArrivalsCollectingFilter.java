@@ -14,7 +14,7 @@ import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.ListMultimap;
 
 /**
- * Will return single best arrival on each day based on the following rules
+ * Will compute a collection of single best arrival for each day based on the following rules
  *
  * <ul>
  * <li>Delay is be minimum</li>

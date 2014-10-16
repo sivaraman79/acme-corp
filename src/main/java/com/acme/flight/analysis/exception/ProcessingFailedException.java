@@ -9,6 +9,8 @@ package com.acme.flight.analysis.exception;
  */
 public class ProcessingFailedException extends Exception {
 
+  private static final long serialVersionUID = 492720099292582236L;
+
   public ProcessingFailedException() {
   }
 

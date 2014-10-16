@@ -10,6 +10,13 @@ import java.io.InputStreamReader;
 import org.csveed.api.CsvClient;
 import org.csveed.api.CsvClientImpl;
 
+/**
+ * CSVeed library based implementation for reading the data from a csv file
+ * 
+ * @author thekalinga
+ *
+ * @param <T> Input type to be read
+ */
 public class CsveedReader<T> implements Reader<T> {
 
   private CsvClient<T> csvClient;

@@ -15,8 +15,8 @@ import org.csveed.bean.ColumnNameMapper;
 import org.joda.time.LocalDateTime;
 import org.joda.time.LocalTime;
 
-import com.acme.flight.analysis.util.CsvDateConverter;
-import com.acme.flight.analysis.util.LocalDateTimeSerializer;
+import com.acme.flight.analysis.util.CsveedArrivalDateConverter;
+import com.acme.flight.analysis.util.LocalDateTimeJacksonSerializer;
 
 /**
  * Represents a single instance of flight arrival
@@ -35,7 +35,7 @@ public class Arrival implements Serializable {
   @CsvIgnore
   private Flight flight;
 
-  @CsvConverter(converter = CsvDateConverter.class)
+  @CsvConverter(converter = CsveedArrivalDateConverter.class)
   @CsvCell(columnName = "date")
   private LocalDateTime arrivedAt;
   @CsvCell(columnName = "origin")
@@ -74,7 +74,7 @@ public class Arrival implements Serializable {
   }
 
   @JsonProperty("date")
-  @JsonSerialize(using = LocalDateTimeSerializer.class)
+  @JsonSerialize(using = LocalDateTimeJacksonSerializer.class)
   public LocalDateTime getArrivedAt() {
     return arrivedAt;
   }

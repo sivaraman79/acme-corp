@@ -1,19 +1,17 @@
 # Flight data analyzer [![Build Status](https://travis-ci.org/thekalinga/acme-corporation-flightdata.svg?branch=master)][1]
 
 ## TODO
-- Unit & functional tests to verify the overall intent
-- Javadocs
-- Fixing the issue with Best daily flight arrival filter
-
-## Completed
-- Best performing flight arrivals
-- Sub-Optimal flight arrivals
-- Best daily flight arrivals
-- Support for both JSON & CSV writers. Flexibility to add new writers is inplace
-### 15 Oct 2014
-- Redesigned the API
-- Newer & better abstractions & naming strategies
-- Split data filter from data handler
+- Unit & functional tests to verify the overall intent - In progress
+- ~~Javadocs~~
+- ~~Fixing the issue with Best daily flight arrival filter~~
+- ~~Best performing flight arrivals~~
+- ~~Sub-Optimal flight arrivals~~
+- ~~Best daily flight arrivals~~
+- ~~Support for both JSON & CSV writers. Flexibility to add new writers is inplace~~
+- ~~Redesign API~~
+- ~~Newer & better abstractions~~
+- ~~Better names for packages & classes~~
+- ~~Split data filter from data handler (Single responsibility principle)~~
 
 ## Instructions on how to build
 - Run `gradlew.bat eclipse` from command prompt and import the project into eclipse [for Windows]

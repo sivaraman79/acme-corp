@@ -10,6 +10,12 @@ import org.codehaus.jackson.JsonFactory;
 import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.ObjectMapper;
 
+/**
+ * Jackson library based implementation for writing the data from a JSON file
+ * @author thekalinga
+ *
+ * @param <T> Type to be written
+ */
 public class JacksonJsonWriter<T> implements Writer<T> {
 
   private JsonGenerator jsonGenerator;

@@ -1,6 +1,5 @@
 /**
- * Filter that can handle processed flight info. This can help the strategy to decide whether to
- * accept or reject the processed info
+ * Contains readers that will help stream the data from the source.
  *
  * @author Ashok.Koyi
  *

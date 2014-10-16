@@ -7,7 +7,7 @@ import org.csveed.annotations.CsvCell;
 /**
  * Represents a flight.
  *
- * Assumption: Uniqueness comes from the origin, destination & distanceInMiles fields
+ * Assumption: Uniqueness comes from the origin & destination fields
  *
  * @author Ashok.Koyi
  *

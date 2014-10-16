@@ -1,5 +1,5 @@
 /**
- * Contains writer that can write flight info to different output channel
+ * Contains writers that can write stream of data to any destination
  *
  * @author Ashok.Koyi
  *

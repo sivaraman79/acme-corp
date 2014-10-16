@@ -7,11 +7,17 @@ import org.joda.time.format.DateTimeFormatter;
 
 import com.acme.flight.analysis.model.Arrival;
 
-public class CsvDateConverter extends AbstractConverter<LocalDateTime> {
+/**
+ * Converter to help CSVeed library to convert transform String <-> LocalDateTime for arrivals
+ * 
+ * @author thekalinga
+ *
+ */
+public class CsveedArrivalDateConverter extends AbstractConverter<LocalDateTime> {
 
   private final DateTimeFormatter dtf = DateTimeFormat.forPattern(Arrival.INPUT_DATE_FORMAT);
 
-  public CsvDateConverter() {
+  public CsveedArrivalDateConverter() {
     super(LocalDateTime.class);
   }
 

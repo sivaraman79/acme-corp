@@ -19,6 +19,18 @@ import com.acme.flight.analysis.reader.Reader;
 import com.acme.flight.analysis.writer.CsveedWriter;
 import com.acme.flight.analysis.writer.JacksonJsonWriter;
 
+/**
+ * A bridge that connects
+ * 
+ * <ol>
+ * <li>reader to handler</li>
+ * <li>data handler to data filter</li>
+ * <li>data handler to writer</li>
+ * </ol>
+ * 
+ * @author thekalinga
+ *
+ */
 public class Launcher {
 
   private static final Logger LOGGER = LogManager.getLogger();
@@ -35,9 +47,12 @@ public class Launcher {
         new CsveedReader<>(Launcher.class.getClassLoader().getResourceAsStream("flights.csv"),
             Arrival.class);
 
-    while (reader.hasMoreItems()) {
+    // TODO identify why the CSVeed reader is not functioning properly with flight.csv, so that we
+    // can avoid this null check
+    Arrival arrivalInfo;
+    while ((arrivalInfo = reader.read()) != null) {
       for (DataHandler<Arrival> handler : launcher.getDataHandlers()) {
-        handler.handle(reader.read());
+        handler.handle(arrivalInfo);
       }
     }
 
@@ -48,6 +63,11 @@ public class Launcher {
     LOGGER.info("Processing is complete..");
   }
 
+  /**
+   * Builds all the handlers that are expected to handle the input
+   * 
+   * @throws IOException
+   */
   private void buildDataHandlers() throws IOException {
     LOGGER.debug("Building handlers..");
     dataHandlers = new ArrayList<>();

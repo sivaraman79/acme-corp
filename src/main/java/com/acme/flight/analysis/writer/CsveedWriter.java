@@ -11,6 +11,13 @@ import org.csveed.bean.ColumnNameMapper;
 
 // TODO Need to take care of order in which the columns are written. This will not matter if we use
 // column name mapper while reading
+/**
+ * CSVeed library based implementation for writing the data from a csv file
+ * 
+ * @author thekalinga
+ *
+ * @param <T> Type to be written
+ */
 public class CsveedWriter<T> implements Writer<T> {
 
   private CsvClient<T> csvWriter;
@@ -36,7 +43,7 @@ public class CsveedWriter<T> implements Writer<T> {
     internalWriter.close();
     isClosed = true;
   }
-  
+
   @Override
   public String toString() {
     return "{Csveed writer}";

@@ -12,7 +12,13 @@ import org.joda.time.format.DateTimeFormatter;
 
 import com.acme.flight.analysis.model.Arrival;
 
-public class LocalDateTimeSerializer extends JsonSerializer<LocalDateTime> {
+/**
+ * Jackson serializer to convert LocalDateTime -> String for arrivals
+ * 
+ * @author thekalinga
+ *
+ */
+public class LocalDateTimeJacksonSerializer extends JsonSerializer<LocalDateTime> {
 
   private final DateTimeFormatter dtf = DateTimeFormat.forPattern(Arrival.INPUT_DATE_FORMAT);
 

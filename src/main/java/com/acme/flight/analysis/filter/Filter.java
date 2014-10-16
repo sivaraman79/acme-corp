@@ -11,7 +11,8 @@ package com.acme.flight.analysis.filter;
 public interface Filter<T> {
   /**
    * Applies the filter to the input data
-   * @param t
+   * 
+   * @param t data to apply filter to
    */
   void apply(T t);
 }
