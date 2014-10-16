@@ -1,6 +1,19 @@
 apply plugin:'java'
 apply plugin:'eclipse'
 
+apply plugin: 'jacoco'
+apply plugin: 'com.github.kt3k.coveralls'
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.0.0'
+    }
+}
+
 sourceCompatibility = 1.7
 version = '0.1.0'
 
@@ -29,6 +42,13 @@ dependencies {
   // For testing
   testCompile 'junit:junit:4.11'
   testCompile 'org.mockito:mockito-all:1.10.8'
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
 }
 
 task wrapper(type: Wrapper) { gradleVersion = '2.0' }
