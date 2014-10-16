@@ -1,6 +1,6 @@
 package com.acme.flight.analysis.filter;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -13,6 +13,7 @@ import com.acme.flight.analysis.Launcher;
 import com.acme.flight.analysis.model.Arrival;
 import com.acme.flight.analysis.reader.CsveedReader;
 import com.acme.flight.analysis.reader.Reader;
+import com.google.common.collect.Sets;
 
 public class DailyBestArrivalsCollectingFilterTests {
 
@@ -42,7 +43,7 @@ public class DailyBestArrivalsCollectingFilterTests {
     Collection<Arrival> matchedEntries = dailyBestArrivalsCollectingFilter.matchedEntries();
     System.out.println(matchedEntries);
     assertEquals(matchedEntries.size(), 5);
-    assertEquals(expectedEntries, new HashSet<>(matchedEntries));
+    assertEquals(Sets.difference(expectedEntries, new HashSet<>(matchedEntries)).size(), 0);
   }
 
 }
