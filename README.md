@@ -2,6 +2,8 @@
 
 ## TODO
 - Unit & functional tests to verify the overall intent - In progress
+- ~~Continous integration~~
+- ~~Java code coverage~~
 - ~~Javadocs~~
 - ~~Fixing the issue with Best daily flight arrival filter~~
 - ~~Best performing flight arrivals~~
